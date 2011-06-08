@@ -2,8 +2,16 @@
 <head>
   <script src="ender.min.js"></script>
   <script src="../fuzzydunlop.js"></script>
+ <link rel="shortcut icon" href="favicon.png" id="favicon" /> 
 </head>
 <body>
 <h1>fuzzydunlop</h1>
+<button id="req">qwe</asd>
+<script>
+  document.querySelector('#req').addEventListener('click', function() {
+    //window.webkitNotifications.requestPermission();
+    $.notify({subject:'asd'});
+  }, false);
+</script>
 </body>
 </html>
