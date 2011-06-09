@@ -38,11 +38,17 @@
         fav.src = document.getElementById("favicon").href;
         fav.onload = function() {
           context.drawImage(fav, 0, 0);
-          if (number !== undefined) {
-            context.fillStyle = 'rgba(255,255,255,0.7)';
+          if (typeof number !== 'undefined') {
+            var num = new Number(number);
+            if (num > 99) num = 99;
+            context.fillStyle = 'rgba(255,255,255,0.8)';
             context.fillRect(0,8,16,8);
-            context.drawImage(font,3,0,6,7,9,9,6,7);
-            context.drawImage(font,21,0,6,7,2,9,6,7);
+            if (num > 9) {
+              var digit = Math.floor(num / 10);
+              context.drawImage(font,digit * 9 + 3,0,6,7,2,9,6,7);
+            }
+            var digit = num % 10;
+            context.drawImage(font,digit * 9 + 3,0,6,7,9,9,6,7);
           }
           $("#faviconDynamic").remove();
           var newfavicon = $.create("<link id='faviconDynamic' type='image/x-icon' rel='shortcut icon'/>")[0];
