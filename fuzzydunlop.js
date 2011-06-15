@@ -13,7 +13,7 @@
     if (options.timeout) {
       notification.ondisplay = function(e) {setTimeout(function(){e.currentTarget.cancel()},options.timeout*1000)};
     }
-    notification.onclick = options.onclick ? options.onclick : function(e) {e.currentTarget.cancel();};
+    notification.onclick = options.onclick ? options.onclick : function(e) {e.currentTarget.cancel();$.alarm.stop();};
     notification.show();
   }
 
@@ -29,7 +29,9 @@
           });
         }
       }
-    },
+    }
+  });
+  $.ender({
     favicon: {
       set: function(number) {
         var c = $.create("<canvas width=16 height=16>")[0];
@@ -51,16 +53,45 @@
             context.drawImage(font,digit * 9 + 3,0,6,7,9,9,6,7);
           }
           $("#faviconDynamic").remove();
-          var newfavicon = $.create("<link id='faviconDynamic' type='image/x-icon' rel='shortcut icon'/>")[0];
+          var newfavicon = $.create("<link id='faviconDynamic' type='image/png' rel='shortcut icon'/>")[0];
           newfavicon.setAttribute("href",c.toDataURL());
           $("head").append(newfavicon);
-
-          $("h1").append(c);
         }
       },
       reset: function(number) {
         this.set();
       }
     }
+  });
+  var audio = {};
+  var alarm = function(name) {
+    name = name || "";
+    if (audio[name]) {
+      console.log("use loaded sound");
+      audio[name].play();
+    } else {
+      var sources = (name == "") ?$("link[rel=alarm]") : $("link[rel=alarm][title="+name+"]");
+      if (sources.length > 0) {
+        console.log("load sound from head");
+        var a = new Audio();
+        a.src = sources.attr("href");
+        audio[name] = a;
+        audio[name].play();
+      }
+    }
+  };
+  alarm.stop = function() {
+    for(var k in audio) {
+        if (audio.hasOwnProperty(k)) {
+          if (!audio[k].paused) {
+            audio[k].pause();
+            audio[k].currentTime = 0;
+          }
+        }
+    }
+  };
+  $.ender({
+    alarm: alarm,
+    audio: audio
   });
 }(ender);
