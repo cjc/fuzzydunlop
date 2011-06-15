@@ -11,7 +11,7 @@
     }
     var notification = notes.createNotification(options.icon,options.subject?options.subject:"",options.text?options.text:"");
     if (options.timeout) {
-      setTimeout(function(){notification.cancel()},options.timeout*1000);
+      notification.ondisplay = function(e) {setTimeout(function(){e.currentTarget.cancel()},options.timeout*1000)};
     }
     notification.onclick = options.onclick ? options.onclick : function(e) {e.currentTarget.cancel();};
     notification.show();
