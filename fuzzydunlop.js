@@ -67,12 +67,10 @@
   var alarm = function(name) {
     name = name || "";
     if (audio[name]) {
-      console.log("use loaded sound");
       audio[name].play();
     } else {
       var sources = (name == "") ?$("link[rel=alarm]") : $("link[rel=alarm][title="+name+"]");
       if (sources.length > 0) {
-        console.log("load sound from head");
         var a = new Audio();
         a.src = sources.attr("href");
         audio[name] = a;
