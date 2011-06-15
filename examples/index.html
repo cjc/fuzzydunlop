@@ -2,17 +2,29 @@
 <head>
   <script src="ender.min.js"></script>
   <script src="../fuzzydunlop.js"></script>
- <link rel="shortcut icon" href="favicon.png" id="favicon" /> 
+  <link rel="shortcut icon" href="favicon.png" id="favicon" /> 
+  <link rel="alarm" type="audio/mpeg" href="short.mp3" title="short" />
+  <link rel="alarm" type="audio/mpeg" href="mid.mp3" title="mid" />
+  <link rel="alarm" type="audio/mpeg" href="long.mp3" title="long" />
 </head>
 <body>
 <h1>fuzzydunlop</h1>
-<button id="req">qwe</asd>
+<button id="req">Notify, alarm and update favicon</button>
 <script>
-  document.querySelector('#req').addEventListener('click', function() {
-    //window.webkitNotifications.requestPermission();
-    $.favicon.set(23) 
-    $.notify({subject:'asd'});
+  var i = 5;
+  var alarms = ["short","mid","long"];
+  $('#req').bind('click', function() {
+    $.favicon.set(i) 
+    $.notify({subject:'Playing alarm "' + alarms[i%3] + '"',timeout:4});
+    $.alarm(alarms[i%3]);
+    i += 11;
   }, false);
+</script>
+<button id="stop">Stop alarms</button>
+<script>
+  $('#stop').bind('click',function() {
+    $.alarm.stop();
+  });
 </script>
 </body>
 </html>
