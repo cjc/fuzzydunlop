@@ -1,7 +1,5 @@
 fuzzydunlop is an ender library wrapping notification type tasks - WebKit desktop notifications, dynamic favicon updating and audio alerts.
 
-Currently only webkit notifications and dynamic favicon updating are functional
-
 ##WebKit Notifications
 
 Triggered by $.notify(options), handles the checking and requesting of permission. By default notifications use the page's favicon as the image, and will click to dismiss.
