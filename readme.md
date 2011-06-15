@@ -25,7 +25,7 @@ $.favicon.reset();
 
 ##Audio Alarms
 
-Easily trigger and stop audio alarms based on sounds referenced in your page's <head>
+Easily trigger and stop audio alarms based on sounds referenced in your page's &lt;head&gt;
 
 ```
 <head>
