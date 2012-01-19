@@ -1,0 +1,18 @@
+{
+  "author": "cjc <cjc@cjc.id.au>",
+  "name": "fuzzydunlop",
+  "description": "fuzzydunlop is an ender library wrapping notification type tasks - WebKit desktop notifications, dynamic favicon updating and audio alerts.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cjc/fuzzydunlop.git"
+  },
+  "engines": {
+    "node": "~0.6.6"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "main": "fuzzydunlop.js",
+  "ender":"noop"
+}
